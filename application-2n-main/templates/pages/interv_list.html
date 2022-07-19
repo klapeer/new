@@ -1,0 +1,81 @@
+{% extends 'pages/index.html' %}
+{% block content %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>$(document).ready(function () {
+    $.noConflict();
+    var table = $('#example').DataTable({
+        scrollX: true,
+    });
+   
+});</script>
+<div class="col-12">
+    <div class="col-11">
+        <div class="card " >
+            <div class="card-title p-2 d-flex">
+                <i class='fas fa-pen fa-2x'></i>
+                <h2 style='font-weight:bold;font-family:none;font-size :30px;text-center'>liste des Interventions</h2> 
+            </div>
+            <div class="card-body">
+                <div class="row ">
+                    <div class="col">
+                        <div class="card card-body">
+                            <form method="GET">
+                
+                            <button class="btn btn-primary" type="submit">Search</button>
+                            {{myFilter.form}}
+                          </form>
+                        </div>
+                    </div>
+                    <a href="{% url 'pdf_interv' %}" type="button" class='btn btn-success my-5'> <i class='fas fa-plus'></i>Imprimer</a>
+                </div>
+                
+            </div>
+            
+            <div class="card-body">
+                <table id="example" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>date_intervention</th>
+                            <th>materiel_en_panne</th>
+                            <th>technicien</th>
+                            <th>observation</th>
+                            <th>solution</th>
+                            <th>Etat_intervention</th>             
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for intervenir in var_interv %} 
+                            <tr>
+                                <td>{{ intervenir.date_intervention }}</td>
+                                <td>{{ intervenir.panne_concerner }}</td>
+                                <td>{{ intervenir.technicien }}</td>
+                                <td>{{ intervenir.observation|truncatechars:"50"  }}</td>
+                                <td>{{ intervenir.solution|truncatechars:"50"  }}</td>
+                                <td>{{ intervenir.Etat_intervention }}</td>            
+                                <td>
+                                    <a href="{% url 'detail_intervention' intervenir.id%}">
+                                        <button type="button" class="btn btn-primary">Details</button>
+                                    </a>
+                                    
+                                   <a href="{% url 'modifier_intervention' intervenir.id  %}">
+                                        <button type="button" class="btn btn-info"><i class="fa fa-edit"></i></button>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+{% endblock content %}
+

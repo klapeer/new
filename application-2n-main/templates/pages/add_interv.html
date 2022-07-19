@@ -1,0 +1,59 @@
+{% extends 'pages/index.html' %}
+{% block content %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+<div class="card">
+    <div class="card-header">
+        <h2 style='font-weight:bold;font-family:none;font-size :30px;text-center'>Ajouter une Interventions</h2>
+    </div>
+    <div class="card-body ">
+        <form action="" method="POST" >
+            {% csrf_token %}
+            <div class="card ">
+                
+                <div class="card-header" >Intervenir pour la panne <div style='font-weight:bold;font-family:none;font-size :30px;text-center' >{{ intervall.materiel_en_panne }}!!!</div></div>
+               
+                <hr>
+                <div class="card-body">
+                   
+                    <div class="row ">
+                        <div class="form-group col-md-8 " >     
+                                
+                                <div class="form-group">
+                                     {{form.panne_concerner|as_crispy_field}}
+                                 </div>
+                            
+                                <div class="form-group">
+                                    {{form.technicien|as_crispy_field}}
+                                </div>    
+                                
+                                <div class="form-group">
+                                    {{form.observation|as_crispy_field}}
+                                </div>
+                                <div class="form-group">
+                                    {{form.solution|as_crispy_field}}
+                                </div>
+                                <div class="form-group">
+                                    {{form.cout_de_reparation|as_crispy_field}}
+                                </div>
+                                <div class="form-group">
+                                    {{form.Etat_intervention|as_crispy_field}}
+                                </div>      
+                              
+                                   
+                         </div>
+                    </div>
+                </div>
+            </div>    
+            <div class="card-body">
+                <button class="btn btn-success" type="submit" name="Envoyer">Add intervention</button>
+                <a href="{% url 'intervention' %}" class="btn btn-info">Show Liste</a>
+                
+            </div> 
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock content %}

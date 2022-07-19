@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+   
+    <hr class='p-2 bg-info'>
+    
+
+
+
+
+<div class="row">
+    
+    <div class="col-12">
+        <div class="card" style="width:110%">
+            <div class="card-title bg-primary p-2 d-flex">
+                <i class='fas fa-pen fa-2x'></i>
+                <p style='font-weight:bold;font-family:none;font-size :20px;text-align:center;font-style:italic'>liste des Interventions</p>   
+            </div>
+            <table class="table table-bordered" >
+                <thead>
+                  <tr  style="border: 1px solid black;padding: 5px; background-color:indigo;color:white">
+                            <th>DATE Interventions</th>
+                            <th >Panne</th>
+                            <th >Technicien</th>
+                            <th>observation</th>
+                            <th >Solution</th>
+                            <th >Etat D'intervention</th>  
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    {% for intervenir in var_interv %}
+                            <tr class="text-light" style="margin-top: 5px;padding: 3px; border:1px solid black">
+                               
+                                <th>{{ intervenir.date_intervention }}</th>
+                                <th>{{ intervenir.panne_concerner }}</th>
+                                <th>{{ intervenir.technicien }}</th>
+                                <th>{{ intervenir.observation }}</th>
+                                <th>{{ intervenir.solution }}</th>
+                                <th>{{ intervenir.Etat_intervention }}</th> 
+                                          
+                                
+                            </tr>
+                        {% endfor%}
+                  </tr>
+                  
+                </tbody>
+              </table>
+            
+               
+      
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

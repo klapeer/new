@@ -1,0 +1,36 @@
+{% extends 'pages/index.html' %}
+{% block content %}
+
+<div class="">
+    <div class="col-lg-11 ">
+        <div class="card bg-info" style="margin-left:5%;">
+            <div class="card-header" style="margin-left:5%;">
+                <h2>
+                 <i class="fa fa-align-justify"></i> Details de l'Interventions
+                 
+                </h2>
+            </div>
+            <div class="card-body">
+                <div class="card col-lg-10">
+                       <h4 class="text-center font-weight-bold font-italic"><p>{{ var_interv.date_intervention }}</p> </h4> 
+                    <h4> ** Le materiel " {{ var_interv.panne_concerner }} " a subir une intervantion par le Technicien "{{ var_interv.technicien }}"</h4>
+                </div><br>
+                <div class="card">
+                    <p> <h4> ** Observation : </h4>{{ var_interv.observation }}</p>
+                </div><br>
+                <div class="card">
+                    <p> <h4> ** Solution : </h4>{{ var_interv.solution }}</p>
+                </div>
+                <div class="card">
+                    <p> <h4> ** Cout Total de la reparation: </h4>{{ var_interv.cout_de_reparation }}</p>
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+</div>
+
+{% endblock content%}

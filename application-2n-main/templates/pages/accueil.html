@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/cs/accueil/style.css" />
+    <title>GMAOAppl</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form action="#" class="sign-in-form">
+            <h2 class="title">Liste des Agences</h2>
+            <button class="btn btn-dark" id="sign-up-btn" style="width: 70%"; >
+              <a href=" {% url 'addAgence' %} " style="color: #fff; text-decoration: none; font-size: 2em;">Ajouter Une agence</a>
+            </button>
+            {% for agence in list_ag %}
+            <button class="btn transparent" id="sign-up-btn" style="border-color:olive; margin: 10px; width: 70%"; >
+              <a href="{% url 'home' agence.id %}" style="color: black; text-decoration: none;">{{agence.nom}}</a>
+            </button>
+            {% comment %} <a href="" class="btn btn form-control bg-info text-center" style='width: 100%;'></a> {% endcomment %}
+            
+            {% endfor%}
+
+        </div>
+      </div>
+
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h2>GMAOAppl</h2>
+            <p>
+                Bienvenue sur notre Application, vieillez Choisir l'agence ou vous souhaitez travailler
+            </p>
+            <button class="btn transparent" id="sign-up-btn">
+              <a href="{% url 'login_page' %}">Deconnecter</a>
+            </button>
+          </div>
+          <img src="/cs/accueil/img/log.svg" class="image" alt="" />
+        </div>
+       
+      </div>
+    </div>
+
+    <script src="/cs/accueil/app.js"></script>
+  </body>
+</html>

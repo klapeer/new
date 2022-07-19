@@ -1,0 +1,99 @@
+{% extends 'pages/index.html' %}
+{% block content %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>$(document).ready(function () {
+    $.noConflict();
+    var table = $('#example').DataTable({
+        scrollX: true,
+    });
+   
+});</script>
+<div class="row">
+<div class="col-12 ">
+    
+        <div class="card" style="width:100%">
+            <div class="card-title p-2 d-flex">
+                <i class='fas fa-pen fa-2x'></i>
+                <h2 style='font-weight:bold;font-family:none;font-size :30px;text-center'>liste des Pannes</h2>   
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="card card-body">
+                            <form method="GET">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                            {{myFilter.form}}
+                          </form>
+                        </div>
+                    </div>
+                    <a href="" type="button" class='btn btn-success my-5'> <i class='fas fa-plus'></i>Imprimer</a>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+</div>
+<div class="row">
+<div class="col-12">
+    <div class="card">
+        <div class="card-header"></div>
+      <div class="card-body">
+        <table id="example" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Materiel</th>
+                    <th>Logiciel</th>
+                    <th>date_declaration_panne</th>
+                    <th>description_panne</th>
+                    <th>Etat_panne</th>             
+                    <th>Action</th>
+                    <th>Mise a Jour</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for panne in var_panne %}
+                    <tr>
+                        <td>{{ panne.materiel }}</td>
+                        <td>{{ panne.logiciel }}</td>
+                        <td>{{ panne.date_declaration_panne|date:"D d M Y"}}</td>
+                        <td>{{ panne.description_panne|truncatechars:"50" }}</td>
+                        <td>{{ panne.Etat_panne }}</td>
+                        <td>
+                            <a href="{% url 'add_interv' panne.id %}">
+                                <button type="button" class="btn btn-warning">Intervenir</button>
+                            </a>
+                            <td>
+                            {% if  panne.logiciel == None  %}
+                                 <a href="{% url 'modifier_panne' panne.id  %}" class="btn btn-info">
+                                    <i class="fa fa-edit">M</i>
+                                 </a>
+                            {% endif %}
+                            {% if panne.materiel == None %}
+                                <a href="{% url 'modifier_panneL' panne.id %}" class="btn btn-info ">
+                                    <i class="fa fa-edit">L</i>
+                                </a>
+                            {% endif %}
+                            </td>
+                            {% comment %} <a href="{% url 'delete_student' student.id %}">
+                                <button type="button" class="btn btn-danger">X</button>
+                            </a> {% endcomment %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+
+
+
+{% endblock content %}
+

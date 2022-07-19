@@ -1,0 +1,87 @@
+{% extends 'pages/index.html' %}
+{% block content %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+<div class="card">
+  <div class="card-header">
+        <h2 style='font-weight:bold;font-family:none;font-size :30px;text-center'>Ajouter une Panne</h2>
+  </div>
+  <div class="card-body ">
+    {% for message in messages %}
+    <p class='alert alert-success mt-3'>{{message}}</p>
+    {% endfor %}
+
+        <form action="" method="POST" novalidate enctype="multipart/form-data" >
+
+          <div class="card ">
+              <div class="card-header">Remplir correctement le formulaire</div>
+                <hr>
+              <div class="card-body col-md-8">
+                    {% csrf_token %}
+                    <div class="form-group col-md-10" >  
+                                                                         
+                        {{ form.type_logiciel|as_crispy_field}} 
+                        
+                        {{ form.logiciel|as_crispy_field}} 
+                        
+                        {{ form.date_declaration_panne|as_crispy_field}}  
+                        
+                        {{ form.description_panne|as_crispy_field}} 
+                       
+                        {{ form.Etat_panne|as_crispy_field}}  
+                        
+                                                                     
+                    </div>
+                      {% comment %} <div class="form-group ">
+                        <label for="">Type de materiel</label>
+                        <select name="type_materiel"  class="form-control">
+                          <option value="" selected="">---Select Type_materiel---</option>
+                          {% for ag in type_materiel %}
+                            <option value="{{ag.id}}">{{ag.nom}}</option>
+                            {% empty %}
+                            <p>pas d'element</p>
+                          {% endfor %}                          
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlSelect1">Materiel</label>
+                        <select name="materiel" class="form-control">
+                          <option value="" selected="">---Select materiel---</option>
+                          {% for ag in list_materiel %}
+                            <option>{{ag.nom}}</option>
+                            {% empty %}
+                            <p>pas d'element</p>
+                          {% endfor %}
+                          
+                        </select>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="">Description du probleme</label>
+                        <textarea class="form-control"  rows="3" name="description_panne"></textarea>
+                      </div>  
+                      <div class="form-group">
+                        <label for="">Date</label>
+                        <input type="date" name="date_declaration_panne"  class="form-control">
+                      </div>  
+                      <div class="form-group">
+                        <label for="">Etat Actuel de la panne</label>
+                        <select multiple class="form-control"  name="Etat_panne">
+                          <option>En Attend</option>
+                          <option>En Cours</option>
+                          
+                        </select>
+                      </div>                     {% endcomment %}
+                </div>
+            </div>    
+            <div class="card-body">
+                <button class="btn btn-success" type="submit" name="Envoyer">Add Panne</button>
+                <a href="{% url 'panne' %}" class="btn btn-info">Show Details</a>
+            </div> 
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock content %}
